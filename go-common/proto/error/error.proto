@@ -6,5 +6,4 @@ package tiyuli.common;
 
 message ErrorInfo {
   string error_code = 1;
-  string error_message = 2;
 }

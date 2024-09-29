@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto/expense";
+option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto";
 
 package tiyuli.expense;
 

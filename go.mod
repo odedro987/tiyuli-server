@@ -3,7 +3,6 @@ module github.com/odedro987/tiyuli-server
 go 1.22.4
 
 require (
-	github.com/odedro987/tiyuli-server/expense-api v0.0.0-20240929190434-d70971ac94cb
 	google.golang.org/grpc v1.67.0
 	google.golang.org/protobuf v1.34.2
 )

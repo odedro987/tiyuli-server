@@ -6,7 +6,9 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-func NewStatusWithDetails(code codes.Code, msg string, details *pb.ErrorInfo) *status.Status {
+type ErrorInfo = pb.ErrorInfo
+
+func NewStatusWithDetails(code codes.Code, msg string, details *ErrorInfo) *status.Status {
 	sts := status.New(code, msg)
 	newStatus, err := sts.WithDetails(details)
 	if err != nil {

@@ -6,8 +6,10 @@ import (
 	"net"
 
 	pb "github.com/odedro987/tiyuli-server/expense-api/proto"
-	pbExpense "github.com/odedro987/tiyuli-server/expense-api/proto/expense"
+	"github.com/odedro987/tiyuli-server/go-common/pkg/auth"
+	grpcError "github.com/odedro987/tiyuli-server/go-common/pkg/error"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
 )
 
@@ -16,12 +18,12 @@ type server struct {
 }
 
 func main() {
-	lis, err := net.Listen("tcp", ":443")
+	lis, err := net.Listen("tcp", ":50051")
 	if err != nil {
-		log.Fatalf("failed to listen on port 443: %v", err)
+		log.Fatalf("failed to listen on port 50051: %v", err)
 	}
 
-	s := grpc.NewServer()
+	s := grpc.NewServer(grpc.UnaryInterceptor(auth.UnaryInterceptor))
 	reflection.Register(s)
 	pb.RegisterTiyuliServiceServer(s, &server{})
 	log.Printf("gRPC server listening at %v", lis.Addr())
@@ -30,9 +32,13 @@ func main() {
 	}
 }
 
-func (s *server) NewExpense(ctx context.Context, in *pbExpense.NewExpenseRequest) (*pbExpense.NewExpenseResponse, error) {
+func (s *server) NewExpense(ctx context.Context, in *pb.NewExpenseRequest) (*pb.NewExpenseResponse, error) {
 	if in.Amount < 0 {
-		return nil, nil
+		return nil, grpcError.NewStatusWithDetails(
+			codes.InvalidArgument,
+			"amount should be positive",
+			&grpcError.ErrorInfo{ErrorCode: "INVALID_AMOUNT"},
+		).Err()
 	}
-	return &pbExpense.NewExpenseResponse{}, nil
+	return &pb.NewExpenseResponse{}, nil
 }

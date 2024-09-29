@@ -8,7 +8,6 @@ package proto
 
 import (
 	context "context"
-	expense "github.com/odedro987/tiyuli-server/expense-api/proto/expense"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -28,8 +27,8 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TiyuliServiceClient interface {
-	NewExpense(ctx context.Context, in *expense.NewExpenseRequest, opts ...grpc.CallOption) (*expense.NewExpenseResponse, error)
-	GetExpense(ctx context.Context, in *expense.GetExpenseByIdRequest, opts ...grpc.CallOption) (*expense.GetExpenseByIdResponse, error)
+	NewExpense(ctx context.Context, in *NewExpenseRequest, opts ...grpc.CallOption) (*NewExpenseResponse, error)
+	GetExpense(ctx context.Context, in *GetExpenseByIdRequest, opts ...grpc.CallOption) (*GetExpenseByIdResponse, error)
 }
 
 type tiyuliServiceClient struct {
@@ -40,9 +39,9 @@ func NewTiyuliServiceClient(cc grpc.ClientConnInterface) TiyuliServiceClient {
 	return &tiyuliServiceClient{cc}
 }
 
-func (c *tiyuliServiceClient) NewExpense(ctx context.Context, in *expense.NewExpenseRequest, opts ...grpc.CallOption) (*expense.NewExpenseResponse, error) {
+func (c *tiyuliServiceClient) NewExpense(ctx context.Context, in *NewExpenseRequest, opts ...grpc.CallOption) (*NewExpenseResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(expense.NewExpenseResponse)
+	out := new(NewExpenseResponse)
 	err := c.cc.Invoke(ctx, TiyuliService_NewExpense_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -50,9 +49,9 @@ func (c *tiyuliServiceClient) NewExpense(ctx context.Context, in *expense.NewExp
 	return out, nil
 }
 
-func (c *tiyuliServiceClient) GetExpense(ctx context.Context, in *expense.GetExpenseByIdRequest, opts ...grpc.CallOption) (*expense.GetExpenseByIdResponse, error) {
+func (c *tiyuliServiceClient) GetExpense(ctx context.Context, in *GetExpenseByIdRequest, opts ...grpc.CallOption) (*GetExpenseByIdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(expense.GetExpenseByIdResponse)
+	out := new(GetExpenseByIdResponse)
 	err := c.cc.Invoke(ctx, TiyuliService_GetExpense_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -64,8 +63,8 @@ func (c *tiyuliServiceClient) GetExpense(ctx context.Context, in *expense.GetExp
 // All implementations must embed UnimplementedTiyuliServiceServer
 // for forward compatibility.
 type TiyuliServiceServer interface {
-	NewExpense(context.Context, *expense.NewExpenseRequest) (*expense.NewExpenseResponse, error)
-	GetExpense(context.Context, *expense.GetExpenseByIdRequest) (*expense.GetExpenseByIdResponse, error)
+	NewExpense(context.Context, *NewExpenseRequest) (*NewExpenseResponse, error)
+	GetExpense(context.Context, *GetExpenseByIdRequest) (*GetExpenseByIdResponse, error)
 	mustEmbedUnimplementedTiyuliServiceServer()
 }
 
@@ -76,10 +75,10 @@ type TiyuliServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTiyuliServiceServer struct{}
 
-func (UnimplementedTiyuliServiceServer) NewExpense(context.Context, *expense.NewExpenseRequest) (*expense.NewExpenseResponse, error) {
+func (UnimplementedTiyuliServiceServer) NewExpense(context.Context, *NewExpenseRequest) (*NewExpenseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method NewExpense not implemented")
 }
-func (UnimplementedTiyuliServiceServer) GetExpense(context.Context, *expense.GetExpenseByIdRequest) (*expense.GetExpenseByIdResponse, error) {
+func (UnimplementedTiyuliServiceServer) GetExpense(context.Context, *GetExpenseByIdRequest) (*GetExpenseByIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetExpense not implemented")
 }
 func (UnimplementedTiyuliServiceServer) mustEmbedUnimplementedTiyuliServiceServer() {}
@@ -104,7 +103,7 @@ func RegisterTiyuliServiceServer(s grpc.ServiceRegistrar, srv TiyuliServiceServe
 }
 
 func _TiyuliService_NewExpense_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(expense.NewExpenseRequest)
+	in := new(NewExpenseRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -116,13 +115,13 @@ func _TiyuliService_NewExpense_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: TiyuliService_NewExpense_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TiyuliServiceServer).NewExpense(ctx, req.(*expense.NewExpenseRequest))
+		return srv.(TiyuliServiceServer).NewExpense(ctx, req.(*NewExpenseRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
 func _TiyuliService_GetExpense_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(expense.GetExpenseByIdRequest)
+	in := new(GetExpenseByIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -134,7 +133,7 @@ func _TiyuliService_GetExpense_Handler(srv interface{}, ctx context.Context, dec
 		FullMethod: TiyuliService_GetExpense_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TiyuliServiceServer).GetExpense(ctx, req.(*expense.GetExpenseByIdRequest))
+		return srv.(TiyuliServiceServer).GetExpense(ctx, req.(*GetExpenseByIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }

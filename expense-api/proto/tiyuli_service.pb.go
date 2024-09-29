@@ -7,7 +7,6 @@
 package proto
 
 import (
-	expense "github.com/odedro987/tiyuli-server/expense-api/proto/expense"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -48,10 +47,10 @@ var file_tiyuli_service_proto_rawDesc = []byte{
 }
 
 var file_tiyuli_service_proto_goTypes = []any{
-	(*expense.NewExpenseRequest)(nil),      // 0: tiyuli.expense.NewExpenseRequest
-	(*expense.GetExpenseByIdRequest)(nil),  // 1: tiyuli.expense.GetExpenseByIdRequest
-	(*expense.NewExpenseResponse)(nil),     // 2: tiyuli.expense.NewExpenseResponse
-	(*expense.GetExpenseByIdResponse)(nil), // 3: tiyuli.expense.GetExpenseByIdResponse
+	(*NewExpenseRequest)(nil),      // 0: tiyuli.expense.NewExpenseRequest
+	(*GetExpenseByIdRequest)(nil),  // 1: tiyuli.expense.GetExpenseByIdRequest
+	(*NewExpenseResponse)(nil),     // 2: tiyuli.expense.NewExpenseResponse
+	(*GetExpenseByIdResponse)(nil), // 3: tiyuli.expense.GetExpenseByIdResponse
 }
 var file_tiyuli_service_proto_depIdxs = []int32{
 	0, // 0: tiyuli.expense.TiyuliService.NewExpense:input_type -> tiyuli.expense.NewExpenseRequest
@@ -70,6 +69,8 @@ func file_tiyuli_service_proto_init() {
 	if File_tiyuli_service_proto != nil {
 		return
 	}
+	file_new_expense_proto_init()
+	file_get_expense_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

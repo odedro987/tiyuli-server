@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto/expense";
+option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto";
 
 package tiyuli.expense;
 
@@ -11,7 +11,7 @@ message NewExpenseRequest {
   optional string note = 2;
   repeated string types = 3;
   google.protobuf.Timestamp payment_date = 4;
-    string currency_code = 6;
+  string currency_code = 6;
   float amount = 7;
 }
 
