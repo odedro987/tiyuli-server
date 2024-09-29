@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto";
+
+package tiyuli;
+
+import "new_expense.proto";
+import "get_expense.proto";
+
+service TiyuliService {
+  rpc NewExpense(expense.NewExpenseRequest) returns (expense.NewExpenseResponse) {}
+  rpc GetExpense(expense.GetExpenseByIdRequest) returns (expense.GetExpenseByIdResponse) {}
+}

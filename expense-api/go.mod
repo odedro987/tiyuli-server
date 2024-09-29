@@ -1,4 +1,4 @@
-module github.com/odedro987/tiyuli-server
+module github.com/odedro987/tiyuli-server/expense-api
 
 go 1.22.4
 

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = "github.com/odedro987/tiyuli-server/go-common/proto/error";
+
+package tiyuli.common;
+
+message ErrorInfo {
+  string error_code = 1;
+  string error_message = 2;
+}

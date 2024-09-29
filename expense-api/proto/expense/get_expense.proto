@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto/expense";
+
+package tiyuli.expense;
+
+import "expense/expense.proto";
+
+message GetExpenseByIdRequest {
+  string id = 1;
+}
+
+message GetExpenseByIdResponse {
+  Expense expense = 1;
+}
