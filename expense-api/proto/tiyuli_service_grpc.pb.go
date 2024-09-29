@@ -20,8 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	TiyuliService_NewExpense_FullMethodName = "/tiyuli.TiyuliService/NewExpense"
-	TiyuliService_GetExpense_FullMethodName = "/tiyuli.TiyuliService/GetExpense"
+	TiyuliService_NewExpense_FullMethodName = "/tiyuli.expense.TiyuliService/NewExpense"
+	TiyuliService_GetExpense_FullMethodName = "/tiyuli.expense.TiyuliService/GetExpense"
 )
 
 // TiyuliServiceClient is the client API for TiyuliService service.
@@ -143,7 +143,7 @@ func _TiyuliService_GetExpense_Handler(srv interface{}, ctx context.Context, dec
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var TiyuliService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tiyuli.TiyuliService",
+	ServiceName: "tiyuli.expense.TiyuliService",
 	HandlerType: (*TiyuliServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

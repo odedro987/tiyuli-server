@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto";
 
-package tiyuli;
+package tiyuli.expense;
 
 import "new_expense.proto";
 import "get_expense.proto";

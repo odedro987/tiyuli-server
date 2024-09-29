@@ -4,7 +4,7 @@ option go_package = "github.com/odedro987/tiyuli-server/expense-api/proto/expens
 
 package tiyuli.expense;
 
-import "expense/expense.proto";
+import "expense.proto";
 
 message GetExpenseByIdRequest {
   string id = 1;

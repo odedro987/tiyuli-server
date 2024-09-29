@@ -31,5 +31,8 @@ func main() {
 }
 
 func (s *server) NewExpense(ctx context.Context, in *pbExpense.NewExpenseRequest) (*pbExpense.NewExpenseResponse, error) {
+	if in.Amount < 0 {
+		return nil, nil
+	}
 	return &pbExpense.NewExpenseResponse{}, nil
 }

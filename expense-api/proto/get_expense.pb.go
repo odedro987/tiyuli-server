@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.34.2
 // 	protoc        v5.28.2
-// source: expense/get_expense.proto
+// source: get_expense.proto
 
 package expense
 
@@ -31,7 +31,7 @@ type GetExpenseByIdRequest struct {
 func (x *GetExpenseByIdRequest) Reset() {
 	*x = GetExpenseByIdRequest{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_expense_get_expense_proto_msgTypes[0]
+		mi := &file_get_expense_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -44,7 +44,7 @@ func (x *GetExpenseByIdRequest) String() string {
 func (*GetExpenseByIdRequest) ProtoMessage() {}
 
 func (x *GetExpenseByIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_expense_get_expense_proto_msgTypes[0]
+	mi := &file_get_expense_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -57,7 +57,7 @@ func (x *GetExpenseByIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetExpenseByIdRequest.ProtoReflect.Descriptor instead.
 func (*GetExpenseByIdRequest) Descriptor() ([]byte, []int) {
-	return file_expense_get_expense_proto_rawDescGZIP(), []int{0}
+	return file_get_expense_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetExpenseByIdRequest) GetId() string {
@@ -78,7 +78,7 @@ type GetExpenseByIdResponse struct {
 func (x *GetExpenseByIdResponse) Reset() {
 	*x = GetExpenseByIdResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_expense_get_expense_proto_msgTypes[1]
+		mi := &file_get_expense_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -91,7 +91,7 @@ func (x *GetExpenseByIdResponse) String() string {
 func (*GetExpenseByIdResponse) ProtoMessage() {}
 
 func (x *GetExpenseByIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_expense_get_expense_proto_msgTypes[1]
+	mi := &file_get_expense_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -104,7 +104,7 @@ func (x *GetExpenseByIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetExpenseByIdResponse.ProtoReflect.Descriptor instead.
 func (*GetExpenseByIdResponse) Descriptor() ([]byte, []int) {
-	return file_expense_get_expense_proto_rawDescGZIP(), []int{1}
+	return file_get_expense_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *GetExpenseByIdResponse) GetExpense() *Expense {
@@ -114,13 +114,12 @@ func (x *GetExpenseByIdResponse) GetExpense() *Expense {
 	return nil
 }
 
-var File_expense_get_expense_proto protoreflect.FileDescriptor
+var File_get_expense_proto protoreflect.FileDescriptor
 
-var file_expense_get_expense_proto_rawDesc = []byte{
-	0x0a, 0x19, 0x65, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x2f, 0x67, 0x65, 0x74, 0x5f, 0x65, 0x78,
-	0x70, 0x65, 0x6e, 0x73, 0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x74, 0x69, 0x79,
-	0x75, 0x6c, 0x69, 0x2e, 0x65, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x1a, 0x15, 0x65, 0x78, 0x70,
-	0x65, 0x6e, 0x73, 0x65, 0x2f, 0x65, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x2e, 0x70, 0x72, 0x6f,
+var file_get_expense_proto_rawDesc = []byte{
+	0x0a, 0x11, 0x67, 0x65, 0x74, 0x5f, 0x65, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x12, 0x0e, 0x74, 0x69, 0x79, 0x75, 0x6c, 0x69, 0x2e, 0x65, 0x78, 0x70, 0x65,
+	0x6e, 0x73, 0x65, 0x1a, 0x0d, 0x65, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x2e, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x22, 0x27, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65,
 	0x42, 0x79, 0x49, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x0e, 0x0a, 0x02, 0x69,
 	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x02, 0x69, 0x64, 0x22, 0x4b, 0x0a, 0x16, 0x47,
@@ -136,24 +135,24 @@ var file_expense_get_expense_proto_rawDesc = []byte{
 }
 
 var (
-	file_expense_get_expense_proto_rawDescOnce sync.Once
-	file_expense_get_expense_proto_rawDescData = file_expense_get_expense_proto_rawDesc
+	file_get_expense_proto_rawDescOnce sync.Once
+	file_get_expense_proto_rawDescData = file_get_expense_proto_rawDesc
 )
 
-func file_expense_get_expense_proto_rawDescGZIP() []byte {
-	file_expense_get_expense_proto_rawDescOnce.Do(func() {
-		file_expense_get_expense_proto_rawDescData = protoimpl.X.CompressGZIP(file_expense_get_expense_proto_rawDescData)
+func file_get_expense_proto_rawDescGZIP() []byte {
+	file_get_expense_proto_rawDescOnce.Do(func() {
+		file_get_expense_proto_rawDescData = protoimpl.X.CompressGZIP(file_get_expense_proto_rawDescData)
 	})
-	return file_expense_get_expense_proto_rawDescData
+	return file_get_expense_proto_rawDescData
 }
 
-var file_expense_get_expense_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
-var file_expense_get_expense_proto_goTypes = []any{
+var file_get_expense_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_get_expense_proto_goTypes = []any{
 	(*GetExpenseByIdRequest)(nil),  // 0: tiyuli.expense.GetExpenseByIdRequest
 	(*GetExpenseByIdResponse)(nil), // 1: tiyuli.expense.GetExpenseByIdResponse
 	(*Expense)(nil),                // 2: tiyuli.expense.Expense
 }
-var file_expense_get_expense_proto_depIdxs = []int32{
+var file_get_expense_proto_depIdxs = []int32{
 	2, // 0: tiyuli.expense.GetExpenseByIdResponse.expense:type_name -> tiyuli.expense.Expense
 	1, // [1:1] is the sub-list for method output_type
 	1, // [1:1] is the sub-list for method input_type
@@ -162,14 +161,14 @@ var file_expense_get_expense_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_expense_get_expense_proto_init() }
-func file_expense_get_expense_proto_init() {
-	if File_expense_get_expense_proto != nil {
+func init() { file_get_expense_proto_init() }
+func file_get_expense_proto_init() {
+	if File_get_expense_proto != nil {
 		return
 	}
-	file_expense_expense_proto_init()
+	file_expense_proto_init()
 	if !protoimpl.UnsafeEnabled {
-		file_expense_get_expense_proto_msgTypes[0].Exporter = func(v any, i int) any {
+		file_get_expense_proto_msgTypes[0].Exporter = func(v any, i int) any {
 			switch v := v.(*GetExpenseByIdRequest); i {
 			case 0:
 				return &v.state
@@ -181,7 +180,7 @@ func file_expense_get_expense_proto_init() {
 				return nil
 			}
 		}
-		file_expense_get_expense_proto_msgTypes[1].Exporter = func(v any, i int) any {
+		file_get_expense_proto_msgTypes[1].Exporter = func(v any, i int) any {
 			switch v := v.(*GetExpenseByIdResponse); i {
 			case 0:
 				return &v.state
@@ -198,18 +197,18 @@ func file_expense_get_expense_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_expense_get_expense_proto_rawDesc,
+			RawDescriptor: file_get_expense_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_expense_get_expense_proto_goTypes,
-		DependencyIndexes: file_expense_get_expense_proto_depIdxs,
-		MessageInfos:      file_expense_get_expense_proto_msgTypes,
+		GoTypes:           file_get_expense_proto_goTypes,
+		DependencyIndexes: file_get_expense_proto_depIdxs,
+		MessageInfos:      file_get_expense_proto_msgTypes,
 	}.Build()
-	File_expense_get_expense_proto = out.File
-	file_expense_get_expense_proto_rawDesc = nil
-	file_expense_get_expense_proto_goTypes = nil
-	file_expense_get_expense_proto_depIdxs = nil
+	File_get_expense_proto = out.File
+	file_get_expense_proto_rawDesc = nil
+	file_get_expense_proto_goTypes = nil
+	file_get_expense_proto_depIdxs = nil
 }
