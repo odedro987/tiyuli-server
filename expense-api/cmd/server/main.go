@@ -14,7 +14,7 @@ import (
 )
 
 type server struct {
-	pb.UnimplementedTiyuliServiceServer
+	pb.UnimplementedExpenseServiceServer
 }
 
 func main() {
@@ -25,7 +25,7 @@ func main() {
 
 	s := grpc.NewServer(grpc.UnaryInterceptor(auth.UnaryInterceptor))
 	reflection.Register(s)
-	pb.RegisterTiyuliServiceServer(s, &server{})
+	pb.RegisterExpenseServiceServer(s, &server{})
 	log.Printf("gRPC server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
@@ -40,5 +40,5 @@ func (s *server) NewExpense(ctx context.Context, in *pb.NewExpenseRequest) (*pb.
 			&grpcError.ErrorInfo{ErrorCode: "INVALID_AMOUNT"},
 		).Err()
 	}
-	return &pb.NewExpenseResponse{}, nil
+	return &pb.NewExpenseResponse{Id: "1213"}, nil
 }

@@ -7,7 +7,7 @@ package tiyuli.expense;
 import "new_expense.proto";
 import "get_expense.proto";
 
-service TiyuliService {
+service ExpenseService {
   rpc NewExpense(expense.NewExpenseRequest) returns (expense.NewExpenseResponse) {}
   rpc GetExpense(expense.GetExpenseByIdRequest) returns (expense.GetExpenseByIdResponse) {}
 }
