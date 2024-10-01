@@ -1,0 +1,13 @@
+# Use root/example as user/password credentials
+version: "3.1"
+
+services:
+  server:
+    image: tiyuli/expense-api
+    ports:
+      - "50051:50051"
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
