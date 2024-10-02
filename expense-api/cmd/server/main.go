@@ -1,21 +1,15 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net"
 
+	"github.com/odedro987/tiyuli-server/expense-api/internal/server"
 	pb "github.com/odedro987/tiyuli-server/expense-api/proto"
 	"github.com/odedro987/tiyuli-server/go-common/pkg/auth"
-	grpcError "github.com/odedro987/tiyuli-server/go-common/pkg/error"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/reflection"
 )
-
-type server struct {
-	pb.UnimplementedExpenseServiceServer
-}
 
 func main() {
 	lis, err := net.Listen("tcp", ":50051")
@@ -25,20 +19,9 @@ func main() {
 
 	s := grpc.NewServer(grpc.UnaryInterceptor(auth.UnaryInterceptor))
 	reflection.Register(s)
-	pb.RegisterExpenseServiceServer(s, &server{})
+	pb.RegisterExpenseServiceServer(s, &server.Server{})
 	log.Printf("gRPC server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)
 	}
-}
-
-func (s *server) NewExpense(ctx context.Context, in *pb.NewExpenseRequest) (*pb.NewExpenseResponse, error) {
-	if in.Amount < 0 {
-		return nil, grpcError.NewStatusWithDetails(
-			codes.InvalidArgument,
-			"amount should be positive",
-			&grpcError.ErrorInfo{ErrorCode: "INVALID_AMOUNT"},
-		).Err()
-	}
-	return &pb.NewExpenseResponse{Id: "1213"}, nil
 }
