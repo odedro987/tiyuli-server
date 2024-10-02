@@ -19,7 +19,13 @@ func main() {
 
 	s := grpc.NewServer(grpc.UnaryInterceptor(auth.UnaryInterceptor))
 	reflection.Register(s)
-	pb.RegisterExpenseServiceServer(s, &server.Server{})
+
+	expenseServer, err := server.NewServer()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	pb.RegisterExpenseServiceServer(s, expenseServer)
 	log.Printf("gRPC server listening at %v", lis.Addr())
 	if err := s.Serve(lis); err != nil {
 		log.Fatalf("failed to serve: %v", err)

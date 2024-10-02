@@ -1,0 +1,25 @@
+FROM golang:1.22.4
+
+
+# Create server folder
+WORKDIR /
+RUN mkdir server
+
+# Copy repo content to temp
+COPY . /temp
+WORKDIR /temp
+
+# Build executable
+RUN go build -o ./bin/expense-api ./expense-api/cmd/server
+
+# Move executable to server folder
+RUN cp -r ./bin/expense-api /server
+
+# Remove repo content in temp folder
+RUN rm -rf /temp
+
+# Ready executable
+WORKDIR /server
+RUN chmod +x ./expense-api
+
+ENTRYPOINT [ "./expense-api" ]

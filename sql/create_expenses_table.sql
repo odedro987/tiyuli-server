@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS expenses;
+
+CREATE TABLE expenses (
+  id INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
+  user_id VARCHAR(128) NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  note VARCHAR(255),
+  types VARCHAR(255) NOT NULL,
+  payment_date INT NOT NULL,
+  currency_code VARCHAR(3) NOT NULL,
+  amount FLOAT NOT NULL
+);
