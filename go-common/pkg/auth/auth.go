@@ -12,9 +12,22 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-var users = map[string]string{
-	"Ron":  "1234",
-	"Oded": "567",
+type UserId struct{}
+
+type User struct {
+	Username string
+	Password string
+}
+
+var users = map[string]User{
+	"003ba3fa-9434-44bf-a9a2-e982659e40ec": {
+		Username: "Oded",
+		Password: "f54c3889001199907a54d76975639f18",
+	},
+	"7a52a58b-5aa9-4d2f-a05c-c0d090bb1b2a": {
+		Username: "Eylon",
+		Password: "8fa3fbef1b6518a80d6b9be774e8dc58",
+	},
 }
 
 func UnaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (interface{}, error) {
@@ -43,13 +56,18 @@ func UnaryInterceptor(ctx context.Context, req interface{}, info *grpc.UnaryServ
 	usernameAndPassword := strings.SplitN(string(basicBytes), ":", 2)
 	username, password := usernameAndPassword[0], usernameAndPassword[1]
 
-	expectedPassword, ok := users[username]
-	if !ok {
-		return nil, status.Errorf(codes.Unauthenticated, "username not found")
+	var found = false
+
+	for uuid, user := range users {
+		if user.Username == username && user.Password == password {
+			found = true
+			ctx = context.WithValue(ctx, UserId{}, uuid)
+			break
+		}
 	}
 
-	if expectedPassword != password {
-		return nil, status.Errorf(codes.Unauthenticated, "incorrect password")
+	if !found {
+		return nil, status.Errorf(codes.Unauthenticated, "incorrect username or password")
 	}
 
 	return handler(ctx, req)
