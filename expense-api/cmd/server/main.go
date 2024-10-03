@@ -2,8 +2,11 @@ package main
 
 import (
 	"log"
+	"log/slog"
 	"net"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/odedro987/tiyuli-server/expense-api/internal/server"
 	pb "github.com/odedro987/tiyuli-server/expense-api/proto"
 	"github.com/odedro987/tiyuli-server/go-common/pkg/auth"
@@ -12,9 +15,15 @@ import (
 )
 
 func main() {
-	lis, err := net.Listen("tcp", ":50051")
+	err := godotenv.Load()
 	if err != nil {
-		log.Fatalf("failed to listen on port 50051: %v", err)
+		slog.Warn("failed loading environment variables", "err", err)
+	}
+
+	port := os.Getenv("TIYULI_EXPENSE_API_PORT")
+	lis, err := net.Listen("tcp", ":"+port)
+	if err != nil {
+		log.Fatalf("failed to listen on port %s: %v", port, err)
 	}
 
 	s := grpc.NewServer(grpc.UnaryInterceptor(auth.UnaryInterceptor))
